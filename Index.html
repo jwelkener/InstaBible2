@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>InstaBible 2.0</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+
+  <h1>InstaBible</h1>
+  <h2>by John Welkener</h2><br><br>
+  <h3>Create an Instagrammable Bible Verse in 3 Easy Steps</h3>
+
+  <form id="user-form">
+    <p>Step 1. Choose your verse.</p>
+    <input type="text" id="verseInput" placeholder="Enter verse, e.g., John 3:16" required /> <br> <br>
+    <button type="button" onclick="getRandomVerse()">Random Verse</button><br><br><br>
+    <p>Step 2. Choose your background image.</p>
+    <input type="text" id="imageInput" placeholder="Enter image URL:" required /> <br>
+    <p>Or, choose an image below:</p><br><br>
+    <div id = 'image-bank'></div><br><br><br><br><br><br>
+    <p>Step 3. Download your image below.</p>
+    <button type="submit" id="generateImageButton">Download</button><br><br>
+  </form>
+
+  <div class="imageContainer">
+    <!-- <img src="" id="generatedImage" class="generatedImage"> -->
+    <div class="centered-verse"></div>
+  </div>
+
+  <script src="app.js"></script>
+
+</body>
+
+</html>
