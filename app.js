@@ -1,6 +1,7 @@
 const verseInputField = document.getElementById('verseInput');
 const imageInputField = document.getElementById('imageInput');
 const imageContainer = document.querySelector('.imageContainer');
+const centeredVerseDiv = document.querySelector('.centered-verse');
 
 // Function to check if the entered value is a valid verse format
 function isValidVerseFormat(verse) {
@@ -17,7 +18,6 @@ function validateImage(url) {
         image.src = url;
     });
 }
-
 
 // Listen for input events on the verse input field
 verseInputField.addEventListener('input', function () {
@@ -90,54 +90,39 @@ function downloadDivAsImage(container) {
     document.body.removeChild(link);
 }
 
-// Function to make an API call and display verse on the image
+// Function to make an API call and display verse in the centered-verse div
 async function fetchVerseAndDisplay(verseInput) {
     try {
         const verseText = await getVerseText(verseInput);
 
-        // Create a new container div for the image and centered verse
-        const containerDiv = document.createElement('div');
-        containerDiv.classList.add('image-container'); // Add a class for styling if needed
+        // Find the container div
+        const containerDiv = document.querySelector('.imageContainer');
 
-        // Create a new image element
-        const imageElement = document.createElement('img');
-        // You can set a default image URL or leave it blank
-        imageElement.src = ''; // Set default or leave blank
-        imageElement.alt = 'Selected Image';
-        imageElement.classList.add('centered-image'); // Add a class for styling if needed
+        // Find or create the centered-verse div
+        let centeredVerseDiv = containerDiv.querySelector('.centered-verse');
+        if (!centeredVerseDiv) {
+            centeredVerseDiv = document.createElement('div');
+            centeredVerseDiv.classList.add('centered-verse');
+            containerDiv.appendChild(centeredVerseDiv);
+        }
 
-        // Create a new div element for the centered verse
-        const centeredVerse = document.createElement('div');
-        centeredVerse.classList.add('centered-verse'); // Add styling class if needed
+        // Clear existing content in the centered-verse div
+        centeredVerseDiv.innerHTML = '';
 
         // Set the text properties
-        centeredVerse.innerText = `${verseText} - ${verseInput}`;
-
-        // Append the image to the container first
-        containerDiv.appendChild(imageElement);
-
-        // Append the centered verse on top of the image
-        containerDiv.appendChild(centeredVerse);
-
-        // Append the container to the image container
-        imageContainer.appendChild(containerDiv);
+        centeredVerseDiv.innerText = `${verseText} - ${verseInput}`;
     } catch (error) {
         console.error('Error fetching and displaying verse:', error);
         // Handle error as needed, e.g., display an error message
     }
 }
 
-// Function to display image in the pre-existing imageContainer
+
+// Function to display image in the imageContainer
 function displayImage(imageUrl) {
     // Validate the image URL before setting it
     validateImage(imageUrl)
         .then(() => {
-            // Get the pre-existing imageContainer
-            const containerDiv = imageContainer;
-
-            // Clear existing content in the imageContainer
-            containerDiv.innerHTML = '';
-
             // Create a new image element
             const imageElement = document.createElement('img');
             // Set the image URL
@@ -145,8 +130,11 @@ function displayImage(imageUrl) {
             imageElement.alt = 'Selected Image';
             imageElement.classList.add('centered-image'); // Add a class for styling if needed
 
-            // Append the image to the pre-existing container
-            containerDiv.appendChild(imageElement);
+            // Clear existing content in the imageContainer
+            imageContainer.innerHTML = '';
+
+            // Append the image to the container
+            imageContainer.appendChild(imageElement);
         })
         .catch(() => {
             // Handle invalid image URL if needed
@@ -154,3 +142,39 @@ function displayImage(imageUrl) {
         });
 }
 
+
+// Function to get a random verse
+function getRandomVerse() {
+    const apiUrl = 'https://bible-api.com/?random=verse';
+
+    fetch(apiUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Assuming the response structure has a 'text' property for the verse
+            const randomVerse = data.text;
+            
+            // Assuming you have a verse input field with id 'verseInput'
+            const verseInputField = document.getElementById('verseInput');
+
+            // Set the value of the verse input field with the random verse
+            verseInputField.value = randomVerse;
+
+            // Fetch and display the verse
+            fetchVerseAndDisplay(randomVerse);
+        })
+        .catch(error => {
+            console.error('Error fetching random verse:', error);
+            // Handle error as needed
+        });
+}
+
+// Connect to button with id 'randomVerseButton'
+const randomVerseButton = document.getElementById('randomVerseButton');
+
+// Attach click event listener to the 'Random Verse' button
+randomVerseButton.addEventListener('click', getRandomVerse);

@@ -8,7 +8,7 @@ function isValidVerseFormat(verse) {
     return verseRegex.test(verse);
 }
 
-// Function to validate image loading
+// Function to check if the entered value is a valid image URL
 function validateImage(url) {
     return new Promise((resolve, reject) => {
         let image = new Image();
@@ -18,30 +18,19 @@ function validateImage(url) {
     });
 }
 
+
 // Listen for input events on the verse input field
-verseInputField.addEventListener('input', function() {
+verseInputField.addEventListener('input', function () {
     const verseInput = verseInputField.value;
     if (isValidVerseFormat(verseInput)) {
         fetchVerseAndDisplay(verseInput);
     }
 });
 
-// // Listen for input events on the image input field
-// imageInputField.addEventListener('input', function () {
-//     const imageInput = imageInputField.value;
-//     displayImage(imageInput);
-// });
-
 // Listen for input events on the image input field
-imageInputField.addEventListener('input', function() {
+imageInputField.addEventListener('input', function () {
     const imageInput = imageInputField.value;
-    validateImage(imageInput)
-        .then(() => {
-            createImageWithVerse(imageInput);
-        })
-        .catch(() => {
-            // Handle invalid image URL if needed
-        });
+    displayImage(imageInput);
 });
 
 // Function to make an API call to get the verse text
@@ -67,35 +56,6 @@ async function getVerseText(verseInput) {
         throw new Error('An error occurred while fetching the verse. Please try again.');
     }
 }
-
-// Function to adjust styles based on content
-// function adjustStyles(imageContainer, centeredVerse) {
-//     // Apply styles to imageContainer
-//     imageContainer.style.position = 'relative';
-//     imageContainer.style.width = '500px';
-//     imageContainer.style.height = '500px';
-//     imageContainer.style.display = 'block';
-//     imageContainer.style.marginLeft = 'auto';
-//     imageContainer.style.marginRight = 'auto';
-//     imageContainer.style.objectFit = 'cover';
-//     imageContainer.style.alignItems = 'center';
-
-//     // Apply styles to centeredVerse
-//     centeredVerse.style.fontFamily = "'Shrikhand', sans-serif";
-//     centeredVerse.style.fontSize = '20px';
-//     centeredVerse.style.color = 'white';
-//     centeredVerse.style.textShadow = '1px 1px 1px gray';
-//     centeredVerse.style.position = 'absolute';
-//     centeredVerse.style.textAlign = 'center';
-//     centeredVerse.style.height = '400px';
-//     centeredVerse.style.width = '400px';
-//     centeredVerse.style.top = '70%';
-//     centeredVerse.style.left = '50%';
-//     centeredVerse.style.transform = 'translate(-50%, -50%)';
-//     centeredVerse.style.webkitTextStrokeWidth = '.75px';
-//     centeredVerse.style.webkitTextStrokeColor = 'black';
-//     centeredVerse.style.zIndex = '4';
-// }
 
 // Function to download the div as an image
 function downloadDivAsImage(container) {
@@ -153,12 +113,13 @@ async function fetchVerseAndDisplay(verseInput) {
         // Set the text properties
         centeredVerse.innerText = `${verseText} - ${verseInput}`;
 
-        // Append the image and centered verse to the container
+        // Append the image to the container first
         containerDiv.appendChild(imageElement);
+
+        // Append the centered verse on top of the image
         containerDiv.appendChild(centeredVerse);
 
         // Append the container to the image container
-        imageContainer.innerHTML = ''; // Clear existing content
         imageContainer.appendChild(containerDiv);
     } catch (error) {
         console.error('Error fetching and displaying verse:', error);
@@ -166,68 +127,30 @@ async function fetchVerseAndDisplay(verseInput) {
     }
 }
 
-// Function to create image with verse
-// function createImageWithVerse(imageUrl) {
-//     // Clear existing content in the imageContainer
-//     imageContainer.innerHTML = '';
-
-//     // Create a new container div for the image and centered verse
-//     const containerDiv = document.createElement('div');
-//     containerDiv.classList.add('image-container'); // Add a class for styling if needed
-
-//     // Create a new image element
-//     const imageElement = document.createElement('img');
-//     imageElement.src = imageUrl;
-//     imageElement.alt = 'Selected Image';
-//     imageElement.classList.add('centered-image'); // Add a class for styling if needed
-
-//     // Create a new div element for the centered verse
-//     const centeredVerse = document.createElement('div');
-//     centeredVerse.classList.add('centered-verse'); // Add styling class if needed
-
-//     // Set the text properties
-//     centeredVerse.innerText = ''; // You can set default text or leave it blank
-
-//     // Append the image and centered verse to the container
-//     containerDiv.appendChild(imageElement);
-//     containerDiv.appendChild(centeredVerse);
-
-//     // Append the container to the image container
-//     imageContainer.innerHTML = ''; // Clear existing content
-//     imageContainer.appendChild(containerDiv);
-// }
-
-// Function to display image in the imageContainer
+// Function to display image in the pre-existing imageContainer
 function displayImage(imageUrl) {
-    // Clear existing content in the imageContainer
-    imageContainer.innerHTML = '';
-
-    // Create a new container div for the image
-    const containerDiv = document.createElement('div');
-    containerDiv.classList.add('image-container'); // Add a class for styling if needed
-
-    // Create a new image element
-    const imageElement = document.createElement('img');
-
     // Validate the image URL before setting it
     validateImage(imageUrl)
         .then(() => {
-            // If the image URL is valid, set it
+            // Get the pre-existing imageContainer
+            const containerDiv = imageContainer;
+
+            // Clear existing content in the imageContainer
+            containerDiv.innerHTML = '';
+
+            // Create a new image element
+            const imageElement = document.createElement('img');
+            // Set the image URL
             imageElement.src = imageUrl;
             imageElement.alt = 'Selected Image';
             imageElement.classList.add('centered-image'); // Add a class for styling if needed
 
-            // Append the image to the container
+            // Append the image to the pre-existing container
             containerDiv.appendChild(imageElement);
-
-            // Append the container to the image container
-            imageContainer.appendChild(containerDiv);
         })
         .catch(() => {
             // Handle invalid image URL if needed
             console.error('Invalid image URL');
         });
 }
-
-
 
