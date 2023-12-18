@@ -1,3 +1,5 @@
+//app.js
+
 const verseInputField = document.getElementById('verseInput');
 const imageInputField = document.getElementById('imageInput');
 const imageContainer = document.querySelector('.imageContainer');
@@ -178,3 +180,5 @@ const randomVerseButton = document.getElementById('randomVerseButton');
 
 // Attach click event listener to the 'Random Verse' button
 randomVerseButton.addEventListener('click', getRandomVerse);
+
+
