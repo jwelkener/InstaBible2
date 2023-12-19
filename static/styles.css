@@ -1,8 +1,30 @@
-@font-face {
-    font-family: 'Shrikhand';
-    src: url('https://raw.githubusercontent.com/jwelkener/InstaBible2/main/static/fonts/Shrikhand/Shrikhand-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+h1 {
+	font-family: 'Shrikhand', sans-serif;
+    color: white;
+    text-shadow: 2px 2px 2px black;
+	font-size: 70px;
+	text-align: center;
+	margin: 0;
+    -webkit-text-stroke-width: .75px;
+    -webkit-text-stroke-color: black;
+}
+
+h2 {
+	margin: 0;
+	font-family: Brush Script MT, Bold, sans-serif;	
+	font-size: 50px;
+}
+
+h3 {
+	/* font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
+	font-size: 25px;
+
+}
+
+p {
+    /* font-family: 'Rubik Doodle Shadow'; */
+    font-weight: bold;
+	font-size: 20px;
 }
 
 /* 21-40 words */
@@ -26,6 +48,17 @@
 .short {
 	font-size: 30px;
 	top: 75%;
+	font-family: 'Shrikhand', sans-serif;
+    color: white;
+    text-shadow: 2px 2px 2px black;
+    position: absolute;
+    text-align: center;
+    height: 400px;
+	width: 400px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-text-stroke-width: .75px;
+    -webkit-text-stroke-color: black;
 }
 
 
@@ -33,18 +66,51 @@
 .medium {
 	font-size: 20px;
 	top: 45%;
+	left: 50%;
+	font-family: 'Shrikhand', sans-serif;
+    color: white;
+    text-shadow: 2px 2px 2px black;
+    position: absolute;
+    text-align: center;
+    height: 400px;
+	width: 400px;
+    transform: translate(-50%, -50%);
+    -webkit-text-stroke-width: .75px;
+    -webkit-text-stroke-color: black;
 }
 
 /* 51-70 words */
 .long {
 	font-size: 15px;
 	top: 30%;
+	left: 50%;
+	font-family: 'Shrikhand', sans-serif;
+    color: white;
+    text-shadow: 2px 2px 2px black;
+    position: absolute;
+    text-align: center;
+    height: 400px;
+	width: 400px;
+    transform: translate(-50%, -50%);
+    -webkit-text-stroke-width: .75px;
+    -webkit-text-stroke-color: black;
 }
 
 /* 71 or more words */
 .extra-long {
 	font-size: 10px;
 	top: 15%;
+	left: 50%;
+	font-family: 'Shrikhand', sans-serif;
+    color: white;
+    text-shadow: 2px 2px 2px black;
+    position: absolute;
+    text-align: center;
+    height: 400px;
+	width: 400px;
+    transform: translate(-50%, -50%);
+    -webkit-text-stroke-width: .75px;
+    -webkit-text-stroke-color: black;
 }
 
 .imageContainer {
@@ -77,25 +143,6 @@
     height: 500px;
 }
 
-h1 {
-	font-family: 'Rubik_Doodle_Shadow';
-    color: white;
-    text-shadow: 2px 2px 2px black;
-	font-size: 50px;
-	text-align: center;
-	margin: 0;
-    -webkit-text-stroke-width: .75px;
-    -webkit-text-stroke-color: black;
-}
-
-h2 {
-	margin: 0;	
-}
-
-h3 {
-	/* font-family: Brush Script MT, Bold, sans-serif; */
-
-}
 
 body {
 	text-align: center;
@@ -126,5 +173,33 @@ img {
 	cursor: pointer;
 	/* display: none; */
   }
+
+  @font-face {
+    font-family: 'Shrikhand';
+    src: url('https://raw.githubusercontent.com/jwelkener/InstaBible2/main/static/fonts/Shrikhand/Shrikhand-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Dancing Script';
+    src: url('https://github.com/jwelkener/InstaBible2/blob/main/static/fonts/Dancing_Script/DancingScript-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pacifico';
+    src: url('https://github.com/jwelkener/InstaBible2/blob/main/static/fonts/Pacifico/Pacifico-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Rubik Doodle Shadow';
+    src: url('https://github.com/jwelkener/InstaBible2/blob/main/static/fonts/Rubik_Doodle_Shadow/RubikDoodleShadow-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 
   
