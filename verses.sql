@@ -1,7 +1,7 @@
 -- verses.sql
 
 CREATE TABLE verses (
-    id INTEGER PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     book TEXT,
     chapter INTEGER,
     verse INTEGER,
