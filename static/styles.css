@@ -1,18 +1,50 @@
+@font-face {
+    font-family: 'Shrikhand';
+    src: url('https://raw.githubusercontent.com/jwelkener/InstaBible2/main/static/fonts/Shrikhand/Shrikhand-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 21-40 words */
 .centered-verse {
     font-family: 'Shrikhand', sans-serif;
-    font-size: 30px;
+    font-size: 25px;
     color: white;
     text-shadow: 2px 2px 2px black;
     position: absolute;
     text-align: center;
     height: 400px;
 	width: 400px;
-    top: 70%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
     -webkit-text-stroke-width: .75px;
     -webkit-text-stroke-color: black;
-	z-index: 4;
+}
+
+/* 1-20 words */
+.short {
+	font-size: 30px;
+	top: 75%;
+}
+
+
+/* 31-50 words */
+.medium {
+	font-size: 20px;
+	top: 45%;
+}
+
+/* 51-70 words */
+.long {
+	font-size: 15px;
+	top: 30%;
+}
+
+/* 71 or more words */
+.extra-long {
+	font-size: 10px;
+	top: 15%;
 }
 
 .imageContainer {
@@ -46,9 +78,14 @@
 }
 
 h1 {
+	font-family: 'Rubik_Doodle_Shadow';
+    color: white;
+    text-shadow: 2px 2px 2px black;
 	font-size: 50px;
 	text-align: center;
 	margin: 0;
+    -webkit-text-stroke-width: .75px;
+    -webkit-text-stroke-color: black;
 }
 
 h2 {

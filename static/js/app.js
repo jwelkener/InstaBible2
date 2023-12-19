@@ -189,7 +189,7 @@ function getRandomVerse() {
         .then(data => {
             // Assuming the response structure has a 'text' property for the verse
             const randomVerse = data.text;
-            
+
             // Assuming you have a verse input field with id 'verseInput'
             const verseInputField = document.getElementById('verseInput');
 
@@ -204,6 +204,7 @@ function getRandomVerse() {
             // Handle error as needed
         });
 }
+
 
 // Connect to button with id 'randomVerseButton'
 const randomVerseButton = document.getElementById('randomVerseButton');
