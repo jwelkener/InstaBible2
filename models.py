@@ -1,13 +1,14 @@
 from flask_sqlalchemy import SQLAlchemy
+from flask import Flask
 
 db = SQLAlchemy()
 
-def connect_db(app)
-	db.app = app
-	db.init_app(app)
+def connect_db(app):
+    db.app = app
+    db.init_app(app)
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///instabible'  # Use SQLite for simplicity
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///instabible'  # Use PostgreSQL for simplicity
 db = SQLAlchemy(app)
 
 class Verse(db.Model):
