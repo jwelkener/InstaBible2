@@ -8,6 +8,8 @@ from sqlalchemy import func
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///instabible'  # Use SQLite for simplicity
 db = SQLAlchemy(app)
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_ECHO'] = True
 
 class Verse(db.Model):
     id = db.Column(db.Integer, primary_key=True)
