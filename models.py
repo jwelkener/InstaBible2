@@ -27,6 +27,15 @@ class Verse(db.Model):
     # for verse in verses_by_john:
     #     print(verse.text)
 
+    @classmethod
+    def get_by_chapter(cls, book_name, chapter_number):
+        return cls.query.filter_by(book=book_name, chapter=chapter_number).all()
+
+    # Example usage:
+    # verses_by_john_chapter_3 = Verse.get_by_chapter('John', 3)
+    # for verse in verses_by_john_chapter_3:
+    #     print(verse.text)
+
 # Create tables
 with app.app_context():
     db.create_all()
