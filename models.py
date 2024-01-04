@@ -18,6 +18,15 @@ class Verse(db.Model):
     verse = db.Column(db.Integer)
     text = db.Column(db.Text)
 
+    @classmethod
+    def get_by_book(cls, book_name):
+        return cls.query.filter_by(book=book_name).all()
+
+    # Example usage:
+    # verses_by_john = Verse.get_by_book('John')
+    # for verse in verses_by_john:
+    #     print(verse.text)
+
 # Create tables
 with app.app_context():
     db.create_all()
